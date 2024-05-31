@@ -13,7 +13,7 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: "#466FD3",
+    backgroundColor: "#467FD3",
     height: 104,
     justifyContent: "flex-end",
   },

@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import CircleButton from "../../components/CircleButton";
 import Header from "../../components/Header";
+import Icon from "../../components/Icon";
 import MemoListItem from "../../components/MemoListItem";
 
 const list = () => {
@@ -13,7 +14,9 @@ const list = () => {
         <MemoListItem />
         <MemoListItem />
       </View>
-      <CircleButton>＋</CircleButton>
+      <CircleButton>
+        <Icon name="plus" size={40} color="#ffffff" />
+      </CircleButton>
     </View>
   );
 };
