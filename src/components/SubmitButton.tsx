@@ -4,7 +4,7 @@ interface Props {
   label: string;
 }
 
-const Button = (prop: Props) => {
+const SubmitButton = (prop: Props) => {
   const { label } = prop;
   return (
     <View style={styles.button}>
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Button;
+export default SubmitButton;

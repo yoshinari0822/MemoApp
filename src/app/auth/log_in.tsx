@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import AuthTextInput from "../../components/AuthTextInput";
-import Button from "../../components/Button";
 import Header from "../../components/Header";
+import SubmitButton from "../../components/SubmitButton";
 
 const LogIn = () => {
   return (
@@ -11,7 +11,7 @@ const LogIn = () => {
         <Text style={styles.title}>Log In</Text>
         <AuthTextInput label="Email Address"></AuthTextInput>
         <AuthTextInput label="password"></AuthTextInput>
-        <Button label="Submit"></Button>
+        <SubmitButton label="Submit"></SubmitButton>
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registered?</Text>
           <Text style={styles.footerLink}>Sign up here</Text>
