@@ -13,8 +13,8 @@ const LogIn = () => {
     <View style={styles.container}>
       <View style={styles.inner}>
         <Text style={styles.title}>Log In</Text>
-        <AuthTextInput label="Email Address"></AuthTextInput>
-        <AuthTextInput label="password"></AuthTextInput>
+        <AuthTextInput label="Email" email={true}></AuthTextInput>
+        <AuthTextInput label="Password" secured={true}></AuthTextInput>
         <SubmitButton label="Submit" onPress={handlePress}></SubmitButton>
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registered?</Text>
