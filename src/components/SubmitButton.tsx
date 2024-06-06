@@ -1,15 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 interface Props {
   label: string;
+  onPress?: () => void;
 }
 
 const SubmitButton = (prop: Props) => {
-  const { label } = prop;
+  const { label, onPress } = prop;
   return (
-    <View style={styles.button}>
+    <TouchableOpacity onPress={onPress} style={styles.button}>
       <Text style={styles.buttonLabel}>{label}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

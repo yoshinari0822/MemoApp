@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import AuthTextInput from "../../components/AuthTextInput";
 import Header from "../../components/Header";
 import SubmitButton from "../../components/SubmitButton";
@@ -14,7 +14,9 @@ const LogIn = () => {
         <SubmitButton label="Submit"></SubmitButton>
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registered?</Text>
-          <Text style={styles.footerLink}>Sign up here</Text>
+          <TouchableOpacity>
+            <Text style={styles.footerLink}>Sign up here</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
