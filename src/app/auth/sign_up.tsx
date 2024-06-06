@@ -5,7 +5,7 @@ import SubmitButton from "../../components/SubmitButton";
 
 const handlePress = (): void => {
   //　ログイン処理
-  router.push("/memo/list");
+  router.replace("/memo/list");
 };
 
 const SignUp = () => {
