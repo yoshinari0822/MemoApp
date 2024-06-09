@@ -1,24 +1,44 @@
 import { Link, router } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import React, { useState } from "react";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import AuthTextInput from "../../components/AuthTextInput";
 import SubmitButton from "../../components/SubmitButton";
+import { auth } from "../../config";
 
-const handlePress = (): void => {
-  //　ログイン処理
-  router.replace("/memo/list");
+const handlePress = (email: string, password: string): void => {
+  //ログイン処理
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log(userCredential.user.uid);
+      router.replace("/memo/list");
+    })
+    .catch((error) => {
+      const { code, message } = error;
+      Alert.alert(message);
+    });
 };
 
 const LogIn = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <View style={styles.container}>
       <View style={styles.inner}>
         <Text style={styles.title}>Log In</Text>
-        <AuthTextInput label="Email" email={true}></AuthTextInput>
-        <AuthTextInput label="Password" secured={true}></AuthTextInput>
-        <SubmitButton label="Submit" onPress={handlePress}></SubmitButton>
+        <AuthTextInput label="Email" email={true} onChangeText={setEmail} />
+        <AuthTextInput
+          label="Password"
+          secured={true}
+          onChangeText={setPassword}
+        />
+        <SubmitButton
+          label="Submit"
+          onPress={() => handlePress(email, password)}
+        />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registered?</Text>
-          <Link href="/auth/sign_up" asChild>
+          <Link href="/auth/sign_up" asChild replace>
             <TouchableOpacity>
               <Text style={styles.footerLink}>Sign up here</Text>
             </TouchableOpacity>

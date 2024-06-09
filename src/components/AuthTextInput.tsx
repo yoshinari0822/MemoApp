@@ -1,30 +1,33 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, TextInput } from "react-native";
 
 interface Props {
   label: string;
   email?: boolean;
   secured?: boolean;
+  onChangeText: (text: string) => void;
 }
 
-const AuthTextInput = (prop: Props) => {
-  const { label, email, secured } = prop;
+const AuthTextInput = (props: Props) => {
+  const { label, email, secured, onChangeText } = props;
   const [text, setText] = useState("");
+
+  const handleChangeText = (text: string) => {
+    setText(text);
+    onChangeText(text);
+  };
+
   return (
     <TextInput
       style={styles.input}
       value={text}
-      onChangeText={(text) => {
-        setText(text);
-      }}
+      onChangeText={handleChangeText}
       autoCapitalize="none"
-      keyboardType={email === true ? "email-address" : "default"}
-      secureTextEntry={secured === true ? true : false}
+      keyboardType={email ? "email-address" : "default"}
+      secureTextEntry={secured ? true : false}
       placeholder={label}
-      textContentType={
-        email === true ? "emailAddress" : secured ? "password" : "none"
-      }
-    ></TextInput>
+      textContentType={email ? "emailAddress" : secured ? "password" : "none"}
+    />
   );
 };
 
