@@ -1,7 +1,7 @@
 import { router, useNavigation } from "expo-router";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { type Memo } from "../../../types/memo";
 import CircleButton from "../../components/CircleButton";
 import Icon from "../../components/Icon";
@@ -46,11 +46,10 @@ const list = () => {
   }, []);
   return (
     <View style={styles.container}>
-      <View>
-        {memos.map((memo) => (
-          <MemoListItem memo={memo} />
-        ))}
-      </View>
+      <FlatList
+        data={memos}
+        renderItem={({ item }) => <MemoListItem memo={item} />}
+      />
       <CircleButton onPress={handlePress}>
         <Icon name="plus" size={40} color="#ffffff" />
       </CircleButton>
