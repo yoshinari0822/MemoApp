@@ -7,20 +7,19 @@ import CircleButton from "../../components/CircleButton";
 import Icon from "../../components/Icon";
 import { auth, db } from "../../config";
 
-const handlePress = () => {
-  router.push("/memo/edit");
+const handlePress = (id: string) => {
+  router.push({ pathname: "/memo/edit", params: { id } });
 };
 
 const Detail = () => {
-  const params = useLocalSearchParams();
-  const { id } = params;
+  const id = String(useLocalSearchParams().id);
   const [memo, setMemo] = useState<Memo | null>(null);
 
   useEffect(() => {
     if (auth.currentUser === null) {
       return;
     }
-    const ref = doc(db, `users/${auth.currentUser.uid}/memos`, String(id));
+    const ref = doc(db, `users/${auth.currentUser.uid}/memos`, id);
     const unsubscribe = onSnapshot(ref, (memoDoc) => {
       const { id, bodyText, updatedAt } = memoDoc.data() as Memo;
       setMemo({ id: id, bodyText: bodyText, updatedAt: updatedAt });
@@ -41,7 +40,12 @@ const Detail = () => {
       <ScrollView style={styles.memoBody}>
         <Text style={styles.memoBodyText}>{memo?.bodyText}</Text>
       </ScrollView>
-      <CircleButton style={{ top: 60, bottom: "auto" }} onPress={handlePress}>
+      <CircleButton
+        style={{ top: 60, bottom: "auto" }}
+        onPress={() => {
+          handlePress(id);
+        }}
+      >
         <Icon name="pencil" size={40} color="#ffffff" />
       </CircleButton>
     </View>
