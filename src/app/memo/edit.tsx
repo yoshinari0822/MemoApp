@@ -1,15 +1,10 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { Timestamp, doc, getDoc, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import {
-  Alert,
-  KeyboardAvoidingView,
-  StyleSheet,
-  TextInput,
-  View,
-} from "react-native";
+import { Alert, StyleSheet, TextInput, View } from "react-native";
 import CircleButton from "../../components/CircleButton";
 import Icon from "../../components/Icon";
+import KeyboardAvoidingView from "../../components/KeyboardAvoidingView";
 import { auth, db } from "../../config";
 // import { type Memo } from "../../../types/memo";
 
@@ -49,7 +44,7 @@ const Edit = () => {
       });
   }, []);
   return (
-    <KeyboardAvoidingView behavior="height" style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
           onChangeText={(text) => {
@@ -58,6 +53,7 @@ const Edit = () => {
           value={bodyText}
           multiline
           style={styles.input}
+          autoFocus
         ></TextInput>
       </View>
       <CircleButton
