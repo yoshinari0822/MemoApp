@@ -14,7 +14,7 @@ const handlePress = (bodyText: string) => {
   const ref = collection(db, `users/${auth.currentUser.uid}/memos`);
   addDoc(ref, {
     bodyText: bodyText,
-    upDatedAt: Timestamp.fromDate(new Date()),
+    updatedAt: Timestamp.fromDate(new Date()),
   })
     .then((docRef) => {
       console.log("成功", docRef.id);
